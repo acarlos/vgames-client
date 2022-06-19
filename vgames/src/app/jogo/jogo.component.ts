@@ -15,6 +15,7 @@ export class JogoComponent implements OnInit {
   title = 'vgames';
   sherlockDTO: SherlockDTO = new SherlockDTO();
   resposta: string;
+  public respostaVazia: boolean = true;
 
   getStartGame(){
     this.jogoService.getStartGame().subscribe(data => {
@@ -34,7 +35,20 @@ export class JogoComponent implements OnInit {
     this.jogoService.setResposta(this.resposta).subscribe(data => {
       this.sherlockDTO=data;
       this.resposta = "";
+      this.respostaVazia = true;
     });
+  }
+
+  isRespostaPreenchida(): void {
+    if (typeof this.resposta != 'undefined' && this.resposta) {
+      this.respostaVazia = false;
+    } else {
+      this.respostaVazia = true;
+    }
+  }
+
+  getRespostaPreenchida(): boolean {
+    return this.respostaVazia;
   }
 
   ngOnInit(): void {

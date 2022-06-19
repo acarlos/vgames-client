@@ -16,15 +16,19 @@
     <h2>{{sherlockDTO.perguntaDTO.pergunta}}</h2>
 </div>
 
-<div style="text-align:center">
+<div style="text-align:left">
+    <h2>Resposta:</h2>
     <input
           type="text"
           class="form-control"
           id="resposta"
           [(ngModel)]="resposta"
           name="resposta"
+          (input)="isRespostaPreenchida()"
         />
-    <button (click)="responda()">Responder</button>
+</div>
+<div style="text-align:center">
+    <button (click)="responda()" [disabled]='getRespostaPreenchida()'>Responder</button>
 </div>
 <div style="text-align:center">
     <h2>{{sherlockDTO.perguntaDTO.resposta.sentenca}}</h2>
