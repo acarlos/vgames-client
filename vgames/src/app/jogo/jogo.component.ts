@@ -30,8 +30,10 @@ export class JogoComponent implements OnInit {
   }
 
   responda() {
+    this.sherlockDTO = new SherlockDTO();
     this.jogoService.setResposta(this.resposta).subscribe(data => {
       this.sherlockDTO=data;
+      this.resposta = "";
     });
   }
 
