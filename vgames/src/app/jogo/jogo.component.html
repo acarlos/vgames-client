@@ -1,1 +1,31 @@
-<p>jogo works!</p>
+<div align='center'>
+    <h1>CRUD with Angular</h1>
+</div>
+
+
+<table class="table" style="text-align:center">
+    <tr>
+        <td>
+            <h2>{{sherlockDTO.saudacao}}</h2>
+        </td>
+    </tr>
+</table>
+
+<div style="text-align:center">
+    <button (click)="pergunta()">Perguntar</button>
+    <h2>{{sherlockDTO.perguntaDTO.pergunta}}</h2>
+</div>
+
+<div style="text-align:center">
+    <input
+          type="text"
+          class="form-control"
+          id="resposta"
+          [(ngModel)]="resposta"
+          name="resposta"
+        />
+    <button (click)="responda()">Responder</button>
+</div>
+<div style="text-align:center">
+    <h2>{{sherlockDTO.perguntaDTO.resposta.sentenca}}</h2>
+</div>
