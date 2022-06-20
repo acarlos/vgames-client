@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Vgames</title>
@@ -8,7 +9,21 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 </head>
+<script>
+  function playSaudacao() {
+    var saudacaoVozHidden = document.getElementById('saudacaoVozHidden');
+    var saudacaoVoz = document.getElementById('saudacaoVoz');
+    var audioStream = saudacaoVozHidden.value;
+    if (!audioStream.lenght) {
+      saudacaoVoz.src = audioStream;
+    }
+    saudacaoVoz.play();
+    document.getElementById('jogo').style.display = 'block';
+  }
+</script>
+
 <body>
   <app-root></app-root>
 </body>
+
 </html>

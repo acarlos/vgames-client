@@ -5,4 +5,5 @@ export class SherlockDTO {
 	jogo:Boolean;
 	indice:number;
 	saudacao:string;
+	saudacaoVoz:string;
 }

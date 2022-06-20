@@ -16,6 +16,7 @@ export class JogoComponent implements OnInit {
   sherlockDTO: SherlockDTO = new SherlockDTO();
   resposta: string;
   public respostaVazia: boolean = true;
+  public jogoIniciado: boolean = false;
 
   getStartGame(){
     this.jogoService.getStartGame().subscribe(data => {
@@ -27,7 +28,10 @@ export class JogoComponent implements OnInit {
   pergunta() {
     this.jogoService.getPergunta(this.sherlockDTO.indice +1).subscribe(data => {
       this.sherlockDTO=data;
-    });
+      let audioElement = <HTMLAudioElement>document.getElementById('perguntaVoz');
+      audioElement.src = data.perguntaDTO.perguntaVoz;
+      audioElement.play();
+    })
   }
 
   responda() {
@@ -49,6 +53,14 @@ export class JogoComponent implements OnInit {
 
   getRespostaPreenchida(): boolean {
     return this.respostaVazia;
+  }
+
+  isJogoIniciado(): Boolean {
+    return this.jogoIniciado;
+  }
+
+  startGame(): void {
+    this.jogoIniciado = true;
   }
 
   ngOnInit(): void {

@@ -1,35 +1,39 @@
 <div align='center'>
     <h1>Voice Games</h1>
 </div>
-
-
-<table class="table" style="text-align:center">
-    <tr>
-        <td>
-            <h2>{{sherlockDTO.saudacao}}</h2>
-        </td>
-    </tr>
-</table>
-
 <div style="text-align:center">
-    <button (click)="pergunta()">Perguntar</button>
-    <h2>{{sherlockDTO.perguntaDTO.pergunta}}</h2>
+    <button (click)="startGame()" onclick="javascript:playSaudacao();" [disabled]='isJogoIniciado()'>Começar</button>
 </div>
+<div id="jogo" style="display: 'none';">
+    <table class="table" style="text-align:center">
+        <tr>
+            <td>
+                <h2>{{sherlockDTO.saudacao}}</h2>
+                <audio id="saudacaoVoz">
+                    <source src="" type="audio/mpeg" />
+                </audio>
+            </td>
+        </tr>
+    </table>
 
-<div style="text-align:left">
-    <h2>Resposta:</h2>
-    <input
-          type="text"
-          class="form-control"
-          id="resposta"
-          [(ngModel)]="resposta"
-          name="resposta"
-          (input)="isRespostaPreenchida()"
-        />
+    <div style="text-align:center">
+        <h2>{{sherlockDTO.perguntaDTO.pergunta}}</h2>
+        <audio id="perguntaVoz">
+            <source src="" type="audio/mpeg" />
+        </audio>
+        <button (click)="pergunta();">Perguntar</button>
+    </div>
+
+    <div style="text-align:left">
+        <h2>Resposta:</h2>
+        <input type="text" class="form-control" id="resposta" [(ngModel)]="resposta" name="resposta"
+            (input)="isRespostaPreenchida()" />
+    </div>
+    <div style="text-align:center">
+        <button (click)="responda()" [disabled]='getRespostaPreenchida()'>Responder</button>
+    </div>
+    <div style="text-align:center">
+        <h2>{{sherlockDTO.perguntaDTO.resposta.sentenca}}</h2>
+    </div>
 </div>
-<div style="text-align:center">
-    <button (click)="responda()" [disabled]='getRespostaPreenchida()'>Responder</button>
-</div>
-<div style="text-align:center">
-    <h2>{{sherlockDTO.perguntaDTO.resposta.sentenca}}</h2>
-</div>
+<input type="hidden" id="saudacaoVozHidden" value="{{sherlockDTO.saudacaoVoz}}" />
