@@ -41,6 +41,9 @@ export class JogoComponent implements OnInit {
     this.resposta = textInVoice.value;
     this.jogoService.setResposta(this.resposta).subscribe(data => {
       this.sherlockDTO = data;
+      let audioElement = <HTMLAudioElement>document.getElementById('sentencaVoz');
+      audioElement.src = data.perguntaDTO.resposta.sentencaVoz;
+      audioElement.play();
       this.resposta = "";
       this.respostaVazia = true;
     });
