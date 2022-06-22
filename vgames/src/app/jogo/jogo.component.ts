@@ -21,6 +21,10 @@ export class JogoComponent implements OnInit {
   public jogoIniciado: boolean = false;
 
   getStartGame() {
+    console.log('start')
+    this.sherlockDTO = new SherlockDTO();
+    this.resposta = "";
+    this.respostaVazia = true;
     this.jogoService.getStartGame().subscribe(data => {
       this.sherlockDTO = data;
       console.log(this.sherlockDTO);
@@ -33,7 +37,10 @@ export class JogoComponent implements OnInit {
       let audioElement = <HTMLAudioElement>document.getElementById('perguntaVoz');
       audioElement.src = data.perguntaDTO.perguntaVoz;
       audioElement.play();
-    })
+      if (!this.sherlockDTO.jogo) {
+        this.jogoIniciado = false;
+      }
+    });
   }
 
   responda() {
@@ -66,6 +73,9 @@ export class JogoComponent implements OnInit {
   }
 
   startGame(): void {
+    if (this.sherlockDTO.indice > 0) {
+      this.getStartGame();
+    }
     this.jogoIniciado = true;
   }
 
