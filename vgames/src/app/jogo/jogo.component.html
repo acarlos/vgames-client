@@ -24,7 +24,7 @@
         <button (click)="pergunta();">Perguntar</button>
     </div>
     <div>
-        <button (click)="iniciarAudicaoPergunta()">Gravar Resposta</button>
+        <button (click)="iniciarAudicaoPergunta()" [disabled]='getGravadorOn() || !isJogoIniciado()'>Gravar Resposta</button>
     </div>
     <div style="text-align:left">
         <h2>Resposta:</h2>
@@ -32,7 +32,7 @@
             (input)="isRespostaPreenchida()" />
     </div>
     <div>
-        <button (click)="pararAudicaoResposta()">Parar Gravador</button>
+        <button (click)="pararAudicaoResposta()" [disabled]='!getGravadorOn()'>Parar Gravador</button>
     </div>
     <div style="text-align:center">
         <button (click)="responda()" [disabled]='getRespostaPreenchida()'>Responder</button>

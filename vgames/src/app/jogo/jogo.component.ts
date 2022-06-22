@@ -19,6 +19,7 @@ export class JogoComponent implements OnInit {
   resposta: string;
   public respostaVazia: boolean = true;
   public jogoIniciado: boolean = false;
+  public gravadorOn: boolean = false;
 
   getStartGame() {
     console.log('start')
@@ -86,6 +87,7 @@ export class JogoComponent implements OnInit {
   recognition = new webkitSpeechRecognition();
 
   iniciarAudicaoPergunta() {
+    this.gravadorOn = true;
     var textInVoice = <HTMLInputElement>document.getElementById("resposta");
     this.recognition.continuous = true;
     this.recognition.start();
@@ -110,5 +112,11 @@ export class JogoComponent implements OnInit {
   pararAudicaoResposta() {
     this.recognition.stop();
     this.respostaVazia = false;
+    this.gravadorOn = false;
   }
+
+  getGravadorOn():boolean{
+    return this.gravadorOn; 
+  }
+
 }
